@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const InstagramLogin = () => {
   return (
@@ -50,25 +51,25 @@ const InstagramLogin = () => {
               </div>
 
               <div className="text-center">
-                <a href="#" className="text-[#385185] text-base font-bold hover:text-[#3f37ad]">
+                <Link href="#" className="text-[#385185] text-base font-bold hover:text-[#3f37ad]">
                   <span className="inline-block mr-1"><i className="fab fa-facebook-square" /></span>
                   Log in with Facebook
-                </a>
+                </Link>
                 <div className="mt-6">
-                  <a href="#" className="text-sm text-[#868585]">Forgot password?</a>
+                  <Link href="#" className="text-sm text-[#868585]">Forgot password?</Link>
                 </div>
               </div>
             </form>
 
             <div className="w-[355px] mt-2 py-[22px] text-center text-sm bg-white border border-[#dbdbdb]">
-              <a href="#" className="text-[#868585]">Don't have an account? <span className="text-[#63c7e6] font-bold">Sign up</span></a>
+              <Link href="#" className="text-[#868585]">Don&apos;t have an account? <span className="text-[#63c7e6] font-bold">Sign up</span></Link>
             </div>
 
             <div className="w-[355px] mt-2 text-center text-[#868585]">
               <p>Get the app</p>
               <div className="mt-4 flex justify-center gap-2">
-                <a href="#"><Image src="img/appstore.png" alt="Download on App Store" className="w-[140px]" /></a>
-                <a href="#"><Image src="img/googleplay.png" alt="Download on Google Play" className="w-[140px]" /></a>
+                <Link href="#"><Image src="img/appstore.png" alt="Download on App Store" className="w-[140px]" /></Link>
+                <Link href="#"><Image src="img/googleplay.png" alt="Download on Google Play" className="w-[140px]" /></Link>
               </div>
             </div>
           </article>
@@ -81,12 +82,12 @@ const InstagramLogin = () => {
               "Meta", "About", "Blog", "Careers", "API", "Privacy", "Terms", "Top Accounts",
               "Hashtags", "Locations", "Instagram Lite", "Contact Upload & Non-Users"
             ].map(link => (
-              <a href="#" key={link} className="mx-1 text-[#868585]">{link}</a>
+              <Link href="#" key={link} className="mx-1 text-[#868585]">{link}</Link>
             ))}
           </div>
           <div className="mb-4">
             {["Dance", "Food & Drink", "Home & Garden", "Music", "Visual Arts"].map(link => (
-              <a href="#" key={link} className="mx-1 text-[#868585]">{link}</a>
+              <Link href="#" key={link} className="mx-1 text-[#868585]">{link}</Link>
             ))}
           </div>
           <div className="text-[#868585]">&copy; 2022 Instagram from Meta</div>
