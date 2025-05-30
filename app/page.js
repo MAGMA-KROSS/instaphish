@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+
 import Link from 'next/link';
 
 const InstagramLogin = () => {
@@ -10,17 +10,17 @@ const InstagramLogin = () => {
           {/* SMARTPHONE SECTION */}
           <article className="hidden md:block -ml-[90px] relative">
             <div className="absolute top-[25px] left-[160px] animate-fade">
-              <Image className="absolute fade" src="img/screen1.png" alt="screen1" />
-              <Image className="absolute fade" src="img/screen2.png" alt="screen2" />
-              <Image className="absolute fade" src="img/screen3.png" alt="screen3" />
+              <img className="absolute fade w-[250px]"  src="img/screen1.png" alt="screen1" />
+              <img className="absolute fade w-[250px]"  src="img/screen2.png" alt="screen2" />
+              <img className="absolute fade w-[250px]"  src="img/screen3.png" alt="screen3" />
             </div>
-            <Image src="img/smartphones.png" alt="smartphones" />
+            <img src="img/smartphones.png" alt="smartphones" />
           </article>
 
           {/* FORM SECTION */}
           <article className="flex flex-col h-full pt-4">
             <div className="w-[355px] px-[30px] pt-[40px] pb-0 bg-white border border-[#dbdbdb] border-b-0">
-              <Image src="img/logo.png" alt="Instagram Logo" className="w-[170px] mx-auto" />
+              <img src="img/logo.png" alt="Instagram Logo" className="w-[170px] mx-auto" />
             </div>
 
             <form className="flex flex-col items-center w-[355px] py-5 bg-white border border-[#dbdbdb] border-t-0">
@@ -68,8 +68,8 @@ const InstagramLogin = () => {
             <div className="w-[355px] mt-2 text-center text-[#868585]">
               <p>Get the app</p>
               <div className="mt-4 flex justify-center gap-2">
-                <Link href="#"><Image src="img/appstore.png" alt="Download on App Store" className="w-[140px]" /></Link>
-                <Link href="#"><Image src="img/googleplay.png" alt="Download on Google Play" className="w-[140px]" /></Link>
+                <Link href="#"><img src="img/appstore.png" width={140} alt="Download on App Store" className="w-[140px]" /></Link>
+                <Link href="#"><img src="img/googleplay.png" width={140} alt="Download on Google Play" className="w-[140px]" /></Link>
               </div>
             </div>
           </article>
